@@ -1,10 +1,11 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import { reducer, Operations, ActionCreator } from "./reducer/reducer.js";
+import { reducer, ActionCreator } from "./reducer/reducer.js";
 import { Provider } from "react-redux";
 import {App} from "../src/components/app/app.jsx"
 import { createStore} from "redux";
 import{userList} from './bd.js'
+import { Operations } from "./reducer/operations.js";
 
 
 
@@ -16,7 +17,7 @@ export const store = createStore(
     : (f) => f
   
 );
-localStorage.length>1?store.dispatch(ActionCreator.init(localStorage.getItem("userList"))):localStorage.setItem('userList',JSON.stringify(userList))
+localStorage.length>1?store.dispatch(ActionCreator.loadToStore()): store.dispatch(ActionCreator.load(userList, store))
 
 const init = () => {
   ReactDOM.render(
