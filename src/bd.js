@@ -34,7 +34,7 @@ export const userList = {
       email: "noga@test.com",
       password: "5575",
       number: "88005553535",
-      status: "admin",
+      status: "partner",
       created:
         new Date().getHours() +
         ":" +
@@ -62,7 +62,7 @@ export const userList = {
       email: "karp@test.com",
       password: "5575",
       number: "88005553535",
-      status: "user",
+      status: "client",
       created:
         new Date().getHours() +
         ":" +
