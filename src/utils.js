@@ -88,29 +88,35 @@ export const edit = (
   );
   return splicedArray;
 };
-export const deleteUser=(user,users)=>{
-        const index = (arr) => arr.findIndex((item) => item.id === user.id);
-        let splicedArray = [...users];
-        splicedArray.splice(index(users), 1);
-        localStorage.removeItem(user.id)
-        return splicedArray;
-      
-}
-export const searchUser = (inputValue, users) => {
-    return users.filter((item) => {
-      let regexp = new RegExp(`${inputValue}`, "i");
-      if (regexp.test(item.email)) {
-        return item;
-      }
-    });
-    
-  };
-  export const filterByStatus = (inputValue, users) => {
-    return users.filter((item) => {
-      let regexp = new RegExp(`${inputValue}`, "i");
-      if (regexp.test(item.status)) {
-        return item;
-      }
-    });
-    
-  };
+export const deleteUser = (user, users) => {
+  const index = (arr) => arr.findIndex((item) => item.id === user.id);
+  let splicedArray = [...users];
+  splicedArray.splice(index(users), 1);
+  localStorage.removeItem(user.id);
+  return splicedArray;
+};
+const typeOfSearch = (item, flag) => {
+  switch (flag) {
+    case "email":
+      return item.email;
+    case "number":
+      return item.number;
+    case "status":
+      return item.status;
+  }
+  return flag;
+};
+export const searchUser = (inputValue, users, flag) => {
+  return users.filter((item) => {
+    let regexp = new RegExp(`${inputValue}`, "i");
+    if (regexp.test(typeOfSearch(item, flag))) {
+      console.log(item);
+      return item;
+    }
+  });
+};
+
+export const testName = (value) => {
+  var regExp = /^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/;
+  return regExp.test(value);
+};

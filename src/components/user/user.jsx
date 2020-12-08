@@ -5,7 +5,7 @@ const User = (props) => {
   const [edit, setEdit] = useState(false);
 
   return !edit ? (
-    <li className="user-item" key={user.id}>
+    <li className="user-item">
       <div className="user-email info">{user.email}</div>
       <div className="user-password info">{user.password}</div>
       <div className="user-number info">{user.number}</div>
@@ -13,22 +13,25 @@ const User = (props) => {
       <div className="user-status info">{user.status}</div>
       <div className="user-created info">{user.created}</div>
       <div className="user-changed info">{user.changed}</div>
-      <button className="edit" onClick={() => setEdit(true)}>
-        EDIT
-      </button>
+      <div className="btns">
+        <button className="edit-btn" onClick={() => setEdit(true)}>
+          EDIT
+        </button>
 
-      <button
-        className="delete"
-        onClick={() => {
-          onDelete(user, users);
-          alert(user.name + "  deleted");
-        }}
-      >
-        DELETE
-      </button>
+        <button
+          className="delete"
+          onClick={() => {
+            onDelete(user, users);
+            alert(user.name + "  deleted");
+          }}
+        >
+          DELETE
+        </button>
+      </div>
     </li>
   ) : (
     <form
+      className="edit-form"
       action=""
       onSubmit={(evt) => {
         evt.preventDefault();
